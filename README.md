@@ -25,7 +25,7 @@ I created the C++ version of this tool to avoid issues between different Python 
 
 **Windows:** just download from the *releases* section, extract to a folder (store it if you want to be able to uninstall later) and run the executable. The program should take care of everything by itself.
 
-**Linux:** you need to compile the program first. After you compiled it, ```chmod +x``` if needed and run ```sudo auto-unlocker```.
+**Linux:** you can find an experimental x64 .deb package in the latest release. It should work on Debian-derived distributions (including Ubuntu, etc.) although I've not tested it extensively. Install it with apt which will take care of all the dependencies. If it doesn't work for you or if you don't have a Debian-derived distribution you need to compile the program first. After you compiled it, ```chmod +x``` if needed and run ```sudo auto-unlocker```.
 
 **Command line options:**
 
@@ -51,6 +51,4 @@ Run *CMake* on the source folder to generate a Visual Studio Project. The CMakeL
 **Linux:**
 Use the embedded Makefile. Get needed libraries (or compile them and install) first, then run ```make```
 
-*Note regarding default g++ version on Ubuntu:* by default, Ubuntu ships with g++ v7, which doesn't support natively c++17 features. To compile the program you have to install at least g++-8, set CXX variable when running make and add stdc++fs library dependence (```make CXX=g++-8 LIBS=-lstdc++fs```)
-
-Alternatively, you can install g++-9 and avoid adding the library dependency.
+*Note regarding default g++ version on Ubuntu:* by default, Ubuntu ships with g++ v7, which doesn't support natively c++17 filesystem library, although it includes it in the experimental namespace which should work fine. There's a wrapper that should automatically detect if filesystem is natively supported or not and choose the right namespace. If this doesn't work or you have issues try compiling it with g++8 or g++9.
